@@ -6,7 +6,7 @@ from server.routes.prometheus import track_requests
 import sys
 # import kubernetes
 sys.path.append ("/project/userapp/libraries")
-import login
+import login,signup
 import json
 from flask_cors import CORS, cross_origin
 import os
@@ -85,23 +85,23 @@ def _form():
     return jsonify({"id":1,"result": data['data']}), 200
 
 
-# @app.route('/api/v1/signup', methods = ['POST'])
-# @cross_origin(origin='*',headers=['Content-Type','Authorization'])
-# @track_requests
-# def _signup():
-#     data  = json.loads(request.data.decode("utf-8"))
-#     print(data)
-#     app.logger.info('new form, id %i', 1)
-#     return jsonify({"id":1,"result": data['data']}), 200
+@app.route('/api/v1/signup', methods = ['POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@track_requests
+def _signup():
+    data  = json.loads(request.data.decode("utf-8"))
+    signup_status = signup.signup(data["phone"],data["password"])
+    app.logger.info('new user, id %i', data['phone'])
+    return jsonify({"result": signup_status}), 200
 
 @app.route('/api/v1/login', methods = ['POST'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 @track_requests
 def _login():
-    # data  = json.loads(request.data.decode("utf-8"))
-    # print(data)
-    result = login.login("chechu","test")
-    app.logger.info('new form, id %i', 1)
+    data  = json.loads(request.data.decode("utf-8"))
+    print(data)
+    result = login.login(data["phone"],data["password"])
+    app.logger.info('login, id %i', data['phone'])
     return jsonify({"status": result}), 200
 
 @app.route('/')

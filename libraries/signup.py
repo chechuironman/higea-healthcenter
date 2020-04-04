@@ -4,7 +4,7 @@ from pymongo import MongoClient
 import os
 sys.path.append ("/project/userapp/libraries")
 
-def login(user,password):
+def signup(user,password):
 
     try:
         connection = MongoClient(os.environ['MONGODB_HOST'],
@@ -13,12 +13,8 @@ def login(user,password):
                     authSource=os.environ['MONGODB_DATABASE'])
         db = connection["higea"]
         collection = db["users"]
-        x = collection.find_one({"phone":user,"password":password})
-        if x:
-            logged = True
-        else:
-            logged = False    
-        return logged
+        x = collection.insert_one({"phone":user,"password":password})
+        return True
     except:
         e = sys.exc_info()[0]
         print( "<p>Errorpid: %s</p>" % e )
