@@ -91,8 +91,8 @@ def _form():
 def _signup():
     data  = json.loads(request.data.decode("utf-8"))
     signup_status = signup.signup(data["phone"],data["password"])
-    app.logger.info('new user, id %i', data['phone'])
-    return jsonify({"result": signup_status}), 200
+    app.logger.info('new user, id %s', signup_status)
+    return jsonify({"id": signup_status}), 200
 
 @app.route('/api/v1/login', methods = ['POST'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
