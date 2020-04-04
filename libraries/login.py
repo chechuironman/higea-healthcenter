@@ -11,7 +11,7 @@ def login(user,password):
                     password=os.environ['MONGODB_PASSWORD'],
                     authSource=os.environ['MONGODB_DATABASE'])
         collection = db["users"]
-        x = collection.find_one({"user":user})
+        x = collection.find_one({"phone":user})
         print(x)
         # return(json.dumps(namespace_))
     except:
