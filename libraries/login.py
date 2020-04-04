@@ -14,5 +14,7 @@ def login(user,password):
         x = collection.find_one({"user":user})
         print(x)
         # return(json.dumps(namespace_))
-    except ApiException as e:
-        print("Exception when calling CoreV1Api->list_namespace: %s\n" % e)
+    except:
+        e = sys.exc_info()[0]
+        print( "<p>Errorpid: %s</p>" % e )
+        return str(0) 

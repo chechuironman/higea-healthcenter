@@ -100,9 +100,9 @@ def _form():
 def _login():
     # data  = json.loads(request.data.decode("utf-8"))
     # print(data)
-    libraries.login("chechu","test")
+    result = login.login("chechu","test")
     app.logger.info('new form, id %i', 1)
-    return jsonify({"id":1,"result": data['data']}), 200
+    return jsonify({"status": result}), 200
 
 @app.route('/')
 def index():
