@@ -42,7 +42,7 @@ spec:
         key: host
   applicationImage: backend
   createKnativeService: false
-  expose: false
+  expose: true
   livenessProbe:
     failureThreshold: 12
     httpGet:
