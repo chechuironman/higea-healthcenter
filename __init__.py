@@ -5,8 +5,8 @@ from server import app
 from server.routes.prometheus import track_requests
 import sys
 # import kubernetes
-# sys.path.append ("/project/userapp/libraries")
-# import engine,register
+sys.path.append ("/project/userapp/libraries")
+import login
 import json
 from flask_cors import CORS, cross_origin
 import os
@@ -75,12 +75,32 @@ def HelloWorld():
     return 'Hello from Appsody!'
 
 
-@app.route('/form', methods = ['POST'])
+@app.route('/api/v1/form', methods = ['POST'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 @track_requests
 def _form():
     data  = json.loads(request.data.decode("utf-8"))
     print(data)
+    app.logger.info('new form, id %i', 1)
+    return jsonify({"id":1,"result": data['data']}), 200
+
+
+# @app.route('/api/v1/signup', methods = ['POST'])
+# @cross_origin(origin='*',headers=['Content-Type','Authorization'])
+# @track_requests
+# def _signup():
+#     data  = json.loads(request.data.decode("utf-8"))
+#     print(data)
+#     app.logger.info('new form, id %i', 1)
+#     return jsonify({"id":1,"result": data['data']}), 200
+
+@app.route('/api/v1/login', methods = ['POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@track_requests
+def _login():
+    # data  = json.loads(request.data.decode("utf-8"))
+    # print(data)
+    libraries.login("chechu","test")
     app.logger.info('new form, id %i', 1)
     return jsonify({"id":1,"result": data['data']}), 200
 
