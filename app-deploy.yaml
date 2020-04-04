@@ -11,34 +11,34 @@ metadata:
   labels:
     image.opencontainers.org/title: backend
     stack.appsody.dev/version: 0.1.6
-  name: k8smanager
-  namespace: cloud-lab
+  name: form
+  namespace: higea
 spec:
   env:
   - name: MONGODB_USER
     valueFrom:
       secretKeyRef:
-        name: mongodb-cloud-lab
+        name: mongodb-higea
         key: database-user
   - name: MONGODB_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: mongodb-cloud-lab
+        name: mongodb-higea
         key: database-password
   - name: MONGODB_ADMIN_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: mongodb-cloud-lab
+        name: mongodb-higea
         key: database-admin-password
   - name: MONGODB_DATABASE
     valueFrom:
       secretKeyRef:
-        name: mongodb-cloud-lab
+        name: mongodb-higea
         key: database-name
   - name: MONGODB_HOST
     valueFrom:
       secretKeyRef:
-        name: mongodb-cloud-lab
+        name: mongodb-higea
         key: host
   applicationImage: backend
   createKnativeService: false
@@ -48,11 +48,11 @@ spec:
     httpGet:
       path: /health
       port: 8080 
-    initialDelaySeconds: 5
+    initialDelaySeconds: 50
     periodSeconds: 60
   monitoring:
     labels:
-      k8s-app: backend
+      higea-app: form
   service:
     annotations:
       prometheus.io/scrape: "true"
