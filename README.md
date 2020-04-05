@@ -1,1 +1,1 @@
-HIGEA - Form ingestion microservice
+HIGEA - Health Center view microservice
