@@ -15,7 +15,7 @@ def login(user,password):
         collection = db["users"]
         x = collection.find_one({"phone":user,"password":password})
         if x:
-            logged = True
+            logged = x['id']
         else:
             logged = False    
         return logged

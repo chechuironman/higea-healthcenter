@@ -101,8 +101,12 @@ def _login():
     data  = json.loads(request.data.decode("utf-8"))
     print(data)
     result = login.login(data["phone"],data["password"])
-    app.logger.info('login, id %i', data['phone'])
-    return jsonify({"status": result}), 200
+    if result != False:
+      app.logger.info('login, id %s succesful', data['phone'])
+      return jsonify({"status": True,"id": result}), 200
+    else:
+      app.logger.info('login, id %s FAILED', data['phone'])
+      return jsonify({"status": False}), 200
 
 @app.route('/')
 def index():
