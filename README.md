@@ -1,1 +1,1 @@
- HIGEA - Health Center view microservice
+HIGEA - Health Center view microservice
