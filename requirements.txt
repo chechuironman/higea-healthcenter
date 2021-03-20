@@ -1,11 +1,11 @@
--i https://pypi.org/simple
-click==7.1.1
+-i https://pypi.org/simple/
+click==7.1.2
 configparser==5.0.0
 flask-cors==3.0.8
 flask==1.1.2
 itsdangerous==1.1.0
-jinja2==2.11.1
+jinja2==2.11.3
 markupsafe==1.1.1
 pymongo==3.10.1
-six==1.14.0
+six==1.15.0
 werkzeug==1.0.1
